@@ -1,13 +1,14 @@
 const promise1 = new Promise((resolve,reject)=>{
-    resolve( ["remy","rayee"])
-})
-
-const promise2= new Promise((resolve,reject)=>{
-    // resolve (["minnu","aidu","chinnan",["minnu","aidu","chinnan",["minnu","aidu","chinnan",["minnu","aidu","chinnan"]]]])
+    // resolve( ["remy","rayee"])
     reject("API failed.")
 })
 
-const promiseAll= Promise.all([promise1,promise2])
+const promise2= new Promise((resolve,reject)=>{
+    resolve (["minnu","aidu","chinnan",["minnu","aidu","chinnan",["minnu","aidu","chinnan",["minnu","aidu","chinnan"]]]])
+    // reject("API failed.")
+})
+
+const promiseAll= Promise.race([promise1,promise2])
 
 promiseAll.then((res)=>
 console.log(res.flat(Infinity))).catch((err)=>{
@@ -22,4 +23,13 @@ console.log(res.flat(Infinity))).catch((err)=>{
 console.log(res.flat(infinity))).catch((err)=>{
     console.log(err)
 })
+   Promise.any() behavior:
+It resolves as soon as any one of the input promises fulfills (i.e., succeeds).
+
+If all promises reject, then it rejects with an AggregateError.
+%%%%%%%%%%%%%%%%
+Promise.race() returns a promise that:
+
+Settles (resolves or rejects) as soon as the first promise settles, whether it’s fulfilled or rejected.
+
  */
